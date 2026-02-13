@@ -4,400 +4,258 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Simone Abbiati — GenAI PMM</title>
-  <meta name="description" content="Simone Abbiati — GenAI Product Marketing & Enablement. NLP background. Enterprise adoption. Big Tech-ready portfolio." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      /* Light mode palette pulita */
-      --bg:#ffffff;
-      --surface:#f5f5f7;
-      --surface2:#fbfbfd;
-      --tile:#ffffff;
-      --text:#1d1d1f;
-      --muted:#6e6e73;
-      --faint:#86868b;
-      --hair:rgba(0,0,0,.10);
-
-      /* accents */
-      --accent:#0071e3;
-      --accent2:#42a5f5;
-
-      /* layout */
-      --max:1080px;
-      --radius:22px;
-
-      /* shadows */
-      --shadowHover: 0 20px 40px rgba(0,0,0,.12);
-      --shadowSoft: 0 8px 24px rgba(0,0,0,.04);
-
-      /* Top bar leggermente più scura rispetto al bianco puro */
-      --glass: rgba(242, 242, 247, 0.94); 
-      --glassBorder: rgba(0,0,0,.08);
+    :root {
+      --bg: #ffffff;
+      --text-main: #111111;
+      --text-muted: #666666;
+      --accent: #0071e3;
+      --accent-soft: rgba(0, 113, 227, 0.08);
+      --glass: rgba(255, 255, 255, 0.8);
+      --border: rgba(0, 0, 0, 0.06);
+      --radius-lg: 32px;
+      --radius-md: 16px;
+      --shadow-premium: 0 24px 80px rgba(0,0,0,0.06);
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background: radial-gradient(1200px 600px at 20% -10%, rgba(0,113,227,0.04), transparent 55%),
-                  var(--bg);
-      color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",
-                  "Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      line-height:1.5;
-      -webkit-font-smoothing:antialiased;
+    * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+    
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
     }
 
-    a{color:inherit;text-decoration:none}
-    html{scroll-behavior:smooth}
-    [id]{scroll-margin-top:88px}
-
-    /* ===== TOP BAR ===== */
-    header{
-      position:fixed;
-      top:0; left:0; right:0;
-      z-index:100;
-      background:var(--glass);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom:1px solid var(--glassBorder);
-    }
-    .nav{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:12px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-    }
-    .brand{
-      font-weight:650;
-      letter-spacing:-.2px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .dot{
-      width:9px;height:9px;border-radius:999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(0,113,227,.08);
-    }
-    nav{
-      display:flex;
-      gap:12px;
-    }
-    nav a{
-      font-size:14px;
-      color:var(--muted);
-      padding:7px 12px;
-      border-radius:999px;
-      transition: all .18s ease;
-    }
-    nav a:hover{
-      background: rgba(0,0,0,.05);
-      color: var(--text);
+    /* Navigazione ultra-minimal */
+    header {
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 1000;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding: calc(26px + 56px) 18px 96px;
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    /* ===== HERO ===== */
-    h1{
-      margin:18px 0 10px;
-      font-size:46px;
-      line-height:1.06;
-      letter-spacing:-1.2px;
+    .brand { font-weight: 700; letter-spacing: -0.5px; font-size: 18px; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-left: 24px;
+      transition: color 0.3s;
+      font-weight: 500;
     }
-    @media (max-width:520px){ h1{font-size:34px} }
+    .nav-links a:hover { color: var(--accent); }
 
-    .lead{
-      margin:0 0 10px;
-      color:var(--muted);
-      font-size:19px;
-      max-width:78ch;
-    }
-    .sub{
-      margin:0 0 14px;
-      color:var(--muted);
-      max-width:82ch;
+    /* Layout Hero Centralizzato & Editoriale */
+    .hero-section {
+      padding: 160px 24px 80px;
+      max-width: 900px; /* Larghezza contenuta per leggibilità Ph.D. */
+      margin: 0 auto;
+      text-align: center;
     }
 
-    .cta{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:14px;
+    .photo-wrapper {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 48px;
+      position: relative;
     }
-    .btn{
-      padding:10px 18px;
-      border-radius:999px;
-      border:1px solid var(--hair);
+
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%; /* Foto circolare centrale */
+      object-fit: cover;
       background: #f5f5f7;
-      font-weight:600;
-      font-size:14px;
-      transition: all .15s ease;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,0,0,.08);
-    }
-    .btn.primary{
-      background: #0071e3;
-      color: #fff;
-      border: none;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-premium);
     }
 
-    /* ===== TILES ===== */
-    section{margin-top:44px}
-    .section-title{
-      margin:0 0 14px;
-      font-size:16px;
+    h1 {
+      font-size: 64px;
+      font-weight: 800;
+      letter-spacing: -2.5px;
+      margin-bottom: 32px;
+      line-height: 1.1;
+    }
+
+    .hero-bio {
+      font-size: 20px;
+      color: var(--text-muted);
+      max-width: 750px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-bio p { margin-bottom: 24px; }
+    .hero-bio strong { color: var(--text-main); font-weight: 600; }
+    .highlight { color: var(--accent); font-weight: 600; }
+
+    /* Pulsanti Moderni */
+    .cta-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 999px;
+      text-decoration: none;
       font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .tiles{
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:14px;
+    .btn-primary { background: var(--text-main); color: #fff; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    .btn-secondary { background: #f5f5f7; color: var(--text-main); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: #ebebed; }
+
+    /* Sezione Cards (Grid Design) */
+    .grid-section {
+      max-width: 1100px;
+      margin: 80px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
     }
-    .tile{
-      grid-column: span 6;
-      min-height:170px;
-      border-radius: var(--radius);
-      border:1px solid var(--hair);
-      background: #fff;
-      display:flex;
-      align-items:flex-end;
-      transition: all .2s ease;
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 40px;
+      border-radius: var(--radius-lg);
+      transition: all 0.4s;
+      cursor: pointer;
+    }
+
+    .card:hover { border-color: var(--accent); transform: scale(1.02); }
+    .card h3 { margin: 0 0 12px; font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+    .card p { color: var(--text-muted); margin: 0; font-size: 16px; }
+
+    /* Demo Mobile Frame */
+    .demo-container {
+      background: #fafafa;
+      padding: 100px 24px;
+      text-align: center;
+    }
+
+    .iphone-frame {
+      width: 320px;
+      height: 650px;
+      background: #000;
+      margin: 0 auto;
+      border-radius: 50px;
+      border: 12px solid #1a1a1a;
       overflow: hidden;
-    }
-    .tile:hover{
-      transform: translateY(-2px);
-      box-shadow: var(--shadowHover);
-    }
-    @media (max-width:900px){ .tile{grid-column:span 12} }
-
-    .tile-content{ padding:22px; }
-    .tile-label{
-      font-size:20px;
-      font-weight:700;
-      letter-spacing:-.4px;
+      box-shadow: 0 50px 100px rgba(0,0,0,0.2);
     }
 
-    /* ===== CASE STUDIES ===== */
-    .detail{
-      margin-top:38px;
-      padding-top:38px;
-      border-top:1px solid var(--hair);
-    }
-    .detail h2{ font-size:22px; margin-bottom:12px; }
-    .detail p{ color:var(--muted); max-width:82ch; margin-bottom:18px; }
+    iframe { width: 100%; height: 100%; border: none; }
 
-    .proof{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-    }
-    @media (max-width:900px){ .proof{grid-template-columns:1fr} }
-
-    .proofcard{
-      border:1px solid var(--hair);
-      border-radius: 18px;
-      background: #fbfbfd;
-      padding:20px;
-    }
-    .proofcard h3{ margin:0 0 10px; font-size:15px; }
-    .proofcard ul{ margin:0; padding-left:18px; color:var(--muted); font-size: 14px; }
-    .proofcard li{ margin:8px 0; }
-
-    /* ===== PHONE FRAME (MODERN NOTCH) ===== */
-    .phone-wrap{
-      display:flex;
-      justify-content:flex-start;
-      margin-top: 24px;
-    }
-    .phone{
-      width:min(320px,88vw);
-      aspect-ratio: 9 / 19.5; /* modern iPhone */
-      border-radius:38px;
-      background:#0b0b0c;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:
-        0 14px 36px rgba(0,0,0,.55),
-        0 1px 0 rgba(255,255,255,.10) inset;
-      position:relative;
-      overflow:hidden;
-    }
-    .phone::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:38px;
-      background:linear-gradient(
-        180deg,
-        rgba(255,255,255,.14),
-        rgba(255,255,255,0) 28%
-      );
-      pointer-events:none;
-      opacity:.55;
-    }
-    .notch{
-      position:absolute;
-      top:10px;
-      left:50%;
-      transform:translateX(-50%);
-      width:42%;
-      height:26px;
-      background:#0b0b0c;
-      border-radius:0 0 18px 18px;
-      z-index:5;
-      box-shadow:0 1px 0 rgba(255,255,255,.08);
-    }
-    .screen{
-      position:absolute;
-      inset:10px;
-      border-radius:30px;
-      overflow:hidden;
-      background:#fff;
-    }
-    .screen iframe{
-      width:100%;
-      height:100%;
-      border:0;
-      display:block;
+    footer {
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      border-top: 1px solid var(--border);
     }
 
-    footer{
-      margin-top:56px;
-      padding-top:24px;
-      border-top:1px solid var(--hair);
-      color:var(--muted);
-      font-size:13px;
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 40px; letter-spacing: -1.5px; }
+      .grid-section { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
+
   <header>
-    <div class="nav">
-      <div class="brand"><span class="dot"></span>Simone Abbiati</div>
-      <nav>
+    <div class="nav-container">
+      <div class="brand">Simone Abbiati</div>
+      <div class="nav-links">
         <a href="#work">Work</a>
-        <a href="#case">Case studies</a>
-        <a href="#demos">Demos</a>
-        <a href="#contact">Contact</a>
-      </nav>
+        <a href="#demo">Demo</a>
+        <a href="mailto:abbiati.simone@hotmail.it">Contact</a>
+      </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <!-- HERO -->
-    <section>
-      <h1>GenAI PMM & Enablement.</h1>
-      <p class="lead">
-        I specialize in GenAI product marketing and enablement, designing programs that drive measurable adoption across GTM, product, and customer-facing teams. With a background in NLP, corpus linguistics, and learning design, I help organizations move from LLM hype to clear positioning, effective enablement, and real business impact. In my current role at Squirro, I support product-led growth during a period of rapid scale—contributing to enterprise-wide adoption as the company doubled headcount and achieved +29% ARR year-over-year. 
-        I work at the intersection of AI enablement, product marketing, capabilities into market-ready narratives, with a strong focus on user-centered design and a growing orientation toward product management.
-        Below, you’ll find case studies, frameworks, and hands-on work spanning product marketing, product development, and AI enablement—all focused on turning advanced AI products into outcomes customers understand, trust, and use.
-      </p>
-      <p class="sub">
-        Background in <strong>NLP, corpus linguistics, and learning design</strong>. Strong focus on enterprise AI adoption, workflow integration, and trust.
-      </p>
+  <main>
+    <section class="hero-section">
+      <div class="photo-wrapper">
+        <img src="tuafoto.jpg" alt="Simone Abbiati" class="profile-photo" onerror="this.src='https://via.placeholder.com/200x200?text=Simone'">
+      </div>
 
-      <div class="cta">
-        <a class="btn primary" href="mailto:abbiati.simone@hotmail.it">Email</a>
-        <a class="btn" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/simone-abbiati-187a74202/">LinkedIn</a>
-        <a class="btn" target="_blank" rel="noreferrer" href="https://www.notion.so/2f61ffc60224819b8ff2ee6458ad71ad?pvs=21">Projects</a>
+      <h1>Hi, I’m Simone!</h1>
+
+      <div class="hero-bio">
+        <p>I specialize in <strong>GenAI product marketing and enablement</strong>, designing programs that drive measurable adoption across GTM, product, and customer-facing teams.</p>
+        
+        <p>With a background in <strong>NLP, corpus linguistics, and learning design</strong>, I help organizations move from LLM hype to clear positioning and real business impact. Currently at <span class="highlight">Squirro</span>, I support product-led growth where we achieved <strong>+29% ARR year-over-year</strong>.</p>
+        
+        <p>I turn complex AI capabilities into <strong>market-ready narratives</strong>, with a strong focus on user-centered design and product management.</p>
+      </div>
+
+      <div class="cta-group">
+        <a href="mailto:abbiati.simone@hotmail.it" class="btn btn-primary">Get in touch</a>
+        <a href="https://www.linkedin.com/in/simone-abbiati-187a74202/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+        <a href="https://www.notion.so/..." target="_blank" class="btn btn-secondary">Projects</a>
       </div>
     </section>
 
-    <!-- TILES -->
-    <section id="work">
-      <h2 class="section-title">Areas</h2>
-      <div class="tiles">
-        <a class="tile" href="#demos">
-          <div class="tile-content">
-            <div class="tile-label">Product Development</div>
-          </div>
-        </a>
-        <a class="tile" href="#case">
-          <div class="tile-content">
-            <div class="tile-label">Enablement & Adoption</div>
-          </div>
-        </a>
-        <a class="tile" href="#case">
-          <div class="tile-content">
-            <div class="tile-label">Positioning & Messaging</div>
-          </div>
-        </a>
-        <a class="tile" href="#case">
-          <div class="tile-content">
-            <div class="tile-label">Market & Customer Insight</div>
-          </div>
-        </a>
+    <section class="grid-section" id="work">
+      <div class="card">
+        <h3>Product Development</h3>
+        <p>Bridging the gap between engineering and market needs for GenAI solutions.</p>
+      </div>
+      <div class="card">
+        <h3>Enablement & Adoption</h3>
+        <p>Driving internal and external AI literacy through structured GTM programs.</p>
+      </div>
+      <div class="card">
+        <h3>Positioning & Messaging</h3>
+        <p>Crafting narratives that make advanced AI trustable and easy to understand.</p>
+      </div>
+      <div class="card">
+        <h3>Market Insights</h3>
+        <p>Analyzing customer pain points to shape the next generation of AI features.</p>
       </div>
     </section>
 
-    <!-- CASE STUDIES -->
-    <section id="case" class="detail">
-      <h2>Case studies</h2>
-      <p>Hiring managers in Big Tech look for scope, decision quality, and measured outcomes.</p>
-      <div class="proof">
-        <div class="proofcard">
-          <h3>1) Context & Objective</h3>
-          <ul>
-            <li>ICP, audience, stage, and constraints.</li>
-            <li>Success metrics (adoption, ARR impact).</li>
-          </ul>
-        </div>
-        <div class="proofcard">
-          <h3>2) Insight & Strategy</h3>
-          <ul>
-            <li>Data-driven research and field feedback.</li>
-            <li>Positioning and GTM planning.</li>
-          </ul>
-        </div>
+    <section class="demo-container" id="demo">
+      <h2 style="font-size: 32px; letter-spacing: -1px; margin-bottom: 48px;">Product in Action</h2>
+      <div class="iphone-frame">
+        <iframe src="https://breathing-app-69b47.web.app/"></iframe>
       </div>
     </section>
 
-    <!-- DEMOS (APP SECTION) -->
-    <section id="demos" class="detail">
-      <h2>Product Development</h2>
-      <p>Live application demo embedded in a modern iPhone-style frame.</p>
-
-      <div class="phone-wrap">
-        <div class="phone">
-          <div class="notch"></div>
-          <div class="screen">
-            <iframe 
-              src="https://breathing-app-69b47.web.app/" 
-              title="Breathing App Demo"
-              loading="lazy">
-            </iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="detail">
-      <h2>Contact</h2>
-      <p>
-        <strong>Email:</strong> <a href="mailto:abbiati.simone@hotmail.it" style="color:var(--accent)">abbiati.simone@hotmail.it</a><br/>
-        <strong>Location:</strong> Paradiso (CH)
-      </p>
-    </section>
-
-    <footer>
-      <span>© <script>document.write(new Date().getFullYear())</script> Simone Abbiati</span>
-      <span>GenAI Product Marketing & Enablement</span>
-    </footer>
   </main>
+
+  <footer>
+    <p>© 2026 Simone Abbiati • Paradiso (CH) • GenAI Product Marketing</p>
+  </footer>
+
 </body>
 </html>
