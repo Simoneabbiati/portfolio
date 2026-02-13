@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simone Abbiati — GenAI PMM</title>
+  <meta name="description" content="Simone Abbiati — GenAI Product Marketing & Enablement. NLP background. Enterprise adoption. Big Tech-ready portfolio." />
+
+  <style>
+    :root{
+      /* Light mode palette pulita */
+      --bg:#ffffff;
+      --surface:#f5f5f7;
+      --surface2:#fbfbfd;
+      --tile:#ffffff;
+      --text:#1d1d1f;
+      --muted:#6e6e73;
+      --faint:#86868b;
+      --hair:rgba(0,0,0,.10);
+
+      /* accents */
+      --accent:#0071e3;
+      --accent2:#42a5f5;
+
+      /* layout */
+      --max:1080px;
+      --radius:22px;
+
+      /* shadows */
+      --shadowHover: 0 20px 40px rgba(0,0,0,.12);
+      --shadowSoft: 0 8px 24px rgba(0,0,0,.04);
+
+      /* Top bar leggermente più scura rispetto al bianco puro */
+      --glass: rgba(242, 242, 247, 0.94); 
+      --glassBorder: rgba(0,0,0,.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(0,113,227,0.04), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",
+                  "Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{color:inherit;text-decoration:none}
+    html{scroll-behavior:smooth}
+    [id]{scroll-margin-top:88px}
+
+    /* ===== TOP BAR ===== */
+    header{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:100;
+      background:var(--glass);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom:1px solid var(--glassBorder);
+    }
+    .nav{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      font-weight:650;
+      letter-spacing:-.2px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .dot{
+      width:9px;height:9px;border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(0,113,227,.08);
+    }
+    nav{
+      display:flex;
+      gap:12px;
+    }
+    nav a{
+      font-size:14px;
+      color:var(--muted);
+      padding:7px 12px;
+      border-radius:999px;
+      transition: all .18s ease;
+    }
+    nav a:hover{
+      background: rgba(0,0,0,.05);
+      color: var(--text);
+    }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: calc(26px + 56px) 18px 96px;
+    }
+
+    /* ===== HERO ===== */
+    h1{
+      margin:18px 0 10px;
+      font-size:46px;
+      line-height:1.06;
+      letter-spacing:-1.2px;
+    }
+    @media (max-width:520px){ h1{font-size:34px} }
+
+    .lead{
+      margin:0 0 10px;
+      color:var(--muted);
+      font-size:19px;
+      max-width:78ch;
+    }
+    .sub{
+      margin:0 0 14px;
+      color:var(--muted);
+      max-width:82ch;
+    }
+
+    .cta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      padding:10px 18px;
+      border-radius:999px;
+      border:1px solid var(--hair);
+      background: #f5f5f7;
+      font-weight:600;
+      font-size:14px;
+      transition: all .15s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    }
+    .btn.primary{
+      background: #0071e3;
+      color: #fff;
+      border: none;
+    }
+
+    /* ===== TILES ===== */
+    section{margin-top:44px}
+    .section-title{
+      margin:0 0 14px;
+      font-size:16px;
+      font-weight: 600;
+    }
+
+    .tiles{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:14px;
+    }
+    .tile{
+      grid-column: span 6;
+      min-height:170px;
+      border-radius: var(--radius);
+      border:1px solid var(--hair);
+      background: #fff;
+      display:flex;
+      align-items:flex-end;
+      transition: all .2s ease;
+      overflow: hidden;
+    }
+    .tile:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadowHover);
+    }
+    @media (max-width:900px){ .tile{grid-column:span 12} }
+
+    .tile-content{ padding:22px; }
+    .tile-label{
+      font-size:20px;
+      font-weight:700;
+      letter-spacing:-.4px;
+    }
+
+    /* ===== CASE STUDIES ===== */
+    .detail{
+      margin-top:38px;
+      padding-top:38px;
+      border-top:1px solid var(--hair);
+    }
+    .detail h2{ font-size:22px; margin-bottom:12px; }
+    .detail p{ color:var(--muted); max-width:82ch; margin-bottom:18px; }
+
+    .proof{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width:900px){ .proof{grid-template-columns:1fr} }
+
+    .proofcard{
+      border:1px solid var(--hair);
+      border-radius: 18px;
+      background: #fbfbfd;
+      padding:20px;
+    }
+    .proofcard h3{ margin:0 0 10px; font-size:15px; }
+    .proofcard ul{ margin:0; padding-left:18px; color:var(--muted); font-size: 14px; }
+    .proofcard li{ margin:8px 0; }
+
+    /* ===== PHONE FRAME (MODERN NOTCH) ===== */
+    .phone-wrap{
+      display:flex;
+      justify-content:flex-start;
+      margin-top: 24px;
+    }
+    .phone{
+      width:min(320px,88vw);
+      aspect-ratio: 9 / 19.5; /* modern iPhone */
+      border-radius:38px;
+      background:#0b0b0c;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.55),
+        0 1px 0 rgba(255,255,255,.10) inset;
+      position:relative;
+      overflow:hidden;
+    }
+    .phone::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:38px;
+      background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.14),
+        rgba(255,255,255,0) 28%
+      );
+      pointer-events:none;
+      opacity:.55;
+    }
+    .notch{
+      position:absolute;
+      top:10px;
+      left:50%;
+      transform:translateX(-50%);
+      width:42%;
+      height:26px;
+      background:#0b0b0c;
+      border-radius:0 0 18px 18px;
+      z-index:5;
+      box-shadow:0 1px 0 rgba(255,255,255,.08);
+    }
+    .screen{
+      position:absolute;
+      inset:10px;
+      border-radius:30px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .screen iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+
+    footer{
+      margin-top:56px;
+      padding-top:24px;
+      border-top:1px solid var(--hair);
+      color:var(--muted);
+      font-size:13px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand"><span class="dot"></span>Simone Abbiati</div>
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#case">Case studies</a>
+        <a href="#demos">Demos</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section>
+      <h1>GenAI PMM & Enablement.</h1>
+      <p class="lead">
+        I turn GenAI capabilities into <strong>market-ready narratives</strong>, enablement programs,
+        and measurable adoption across GTM, product, and customer teams.
+      </p>
+      <p class="sub">
+        Background in <strong>NLP, corpus linguistics, and learning design</strong>. Strong focus on enterprise AI adoption, workflow integration, and trust.
+      </p>
+
+      <div class="cta">
+        <a class="btn primary" href="mailto:abbiati.simone@hotmail.it">Email</a>
+        <a class="btn" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/simone-abbiati-187a74202/">LinkedIn</a>
+        <a class="btn" target="_blank" rel="noreferrer" href="https://www.notion.so/2f61ffc60224819b8ff2ee6458ad71ad?pvs=21">Projects</a>
+      </div>
+    </section>
+
+    <!-- TILES -->
+    <section id="work">
+      <h2 class="section-title">Areas</h2>
+      <div class="tiles">
+        <a class="tile" href="#demos">
+          <div class="tile-content">
+            <div class="tile-label">Product Development</div>
+          </div>
+        </a>
+        <a class="tile" href="#case">
+          <div class="tile-content">
+            <div class="tile-label">Enablement & Adoption</div>
+          </div>
+        </a>
+        <a class="tile" href="#case">
+          <div class="tile-content">
+            <div class="tile-label">Positioning & Messaging</div>
+          </div>
+        </a>
+        <a class="tile" href="#case">
+          <div class="tile-content">
+            <div class="tile-label">Market & Customer Insight</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section id="case" class="detail">
+      <h2>Case studies</h2>
+      <p>Hiring managers in Big Tech look for scope, decision quality, and measured outcomes.</p>
+      <div class="proof">
+        <div class="proofcard">
+          <h3>1) Context & Objective</h3>
+          <ul>
+            <li>ICP, audience, stage, and constraints.</li>
+            <li>Success metrics (adoption, ARR impact).</li>
+          </ul>
+        </div>
+        <div class="proofcard">
+          <h3>2) Insight & Strategy</h3>
+          <ul>
+            <li>Data-driven research and field feedback.</li>
+            <li>Positioning and GTM planning.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMOS (APP SECTION) -->
+    <section id="demos" class="detail">
+      <h2>Product Development</h2>
+      <p>Live application demo embedded in a modern iPhone-style frame.</p>
+
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="screen">
+            <iframe 
+              src="https://breathing-app-69b47.web.app/" 
+              title="Breathing App Demo"
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="detail">
+      <h2>Contact</h2>
+      <p>
+        <strong>Email:</strong> <a href="mailto:abbiati.simone@hotmail.it" style="color:var(--accent)">abbiati.simone@hotmail.it</a><br/>
+        <strong>Location:</strong> Paradiso (CH)
+      </p>
+    </section>
+
+    <footer>
+      <span>© <script>document.write(new Date().getFullYear())</script> Simone Abbiati</span>
+      <span>GenAI Product Marketing & Enablement</span>
+    </footer>
+  </main>
+</body>
+</html>
