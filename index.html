@@ -343,7 +343,7 @@ nav.top a.me{font-weight:600}
 .abig span{font-size:.84rem;opacity:.75}
 .adgal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 @media (max-width:900px){.adgal{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.adgal{grid-template-columns:1fr}}
+@media (max-width:560px){.adgal{grid-template-columns:1fr 1fr;gap:10px}.adgal figcaption{font-size:.74rem;padding:8px 10px}}
 .adgal figure{margin:0;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.25);display:flex;flex-direction:column}
 .adgal img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left}
 .adgal figcaption{font-size:.8rem;padding:10px 12px;line-height:1.4}
@@ -368,7 +368,7 @@ html{font-size:clamp(14px,0.55vw + 8.5px,18px)}
 .wcard h3{font-size:clamp(2rem,3.6vw,3.8rem)}
 #pmap{height:clamp(420px,62vh,720px)}
 .t-ink .stage{max-height:62vh}
-.stagetop{grid-template-columns:minmax(0,clamp(340px,32vw,520px)) 1fr}
+@media (min-width:901px){.stagetop{grid-template-columns:minmax(0,clamp(340px,32vw,520px)) 1fr}}
 @media (min-width:1101px){.worklayout{grid-template-columns:clamp(210px,17vw,270px) minmax(0,1fr)}}
 .rail{max-height:calc(100vh - 120px);overflow-y:auto;scrollbar-width:none}
 .rail::-webkit-scrollbar{display:none}
@@ -397,7 +397,17 @@ html{font-size:clamp(14px,0.55vw + 8.5px,18px)}
   nav.top::-webkit-scrollbar{display:none}
   nav.top a{white-space:nowrap;flex:none}
   .hero{padding-top:36px;padding-bottom:40px;gap:22px}
-  .portrait{width:150px}
+  .portrait{width:140px}
+  .hero{min-height:0}
+  .t-ink .stage{max-height:none;aspect-ratio:4/3}
+  .stagetop{grid-template-columns:1fr}
+  .agrid{grid-template-columns:1fr 1fr}
+  .atile{padding:14px}
+  .atile b{font-size:1rem}
+  .lgrid{grid-template-columns:1fr 1fr}
+  .built{grid-template-columns:1fr}
+  .egrid{grid-template-columns:1fr}
+  .stats b{font-size:1.2rem}
   .hero h1{font-size:2.1rem}
   .highlights{padding-block:48px}
   .hl.phd{padding:22px;border-radius:24px}
