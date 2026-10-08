@@ -197,7 +197,7 @@ nav.top a.me{font-weight:600}
 .t-ink{background:#0B0B0C;color:#fff}
 .t-ink .wbar{background:rgba(255,255,255,.08)}
 /* product card */
-.pgrid{display:grid;grid-template-columns:1.5fr 1fr;gap:18px}
+.pgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px}
 @media (max-width:900px){.pgrid{grid-template-columns:1fr}}
 .ghpanel{background:var(--bg);border:1px solid var(--line);border-radius:24px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
 .ghhead{display:flex;justify-content:space-between;gap:10px;font-size:.92rem}
@@ -541,14 +541,16 @@ html{font-size:clamp(14px,0.55vw + 8.5px,18px)}
   window.addEventListener('scroll',function(){if(nav)nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
   if(reduce||!('IntersectionObserver' in window))return;
   var groups=['.hgrid > *','.stitle','.whead','.wbar','.gallery > *','.adgal > *','.collage > *','.repos > *','.pubs li','.stack .tool','.built > *','.agrid > *','.trows > *','.sidecol .talk','.arow > *','.seogeo > *','.hub','.listrip','.egrid > *','.pgrid > *','.map','.stagetop','.socials','.contact h2','.mail','.metrics .mrow > div'];
-  var vh=window.innerHeight, els=[];
-  groups.forEach(function(sel){
-    var list=[].slice.call(document.querySelectorAll(sel));
-    list.forEach(function(el,i){
-      if(el.closest('.rv'))return;
-      if(el.getBoundingClientRect().top<vh*0.95)return; /* already on screen: stay visible */
-      el.classList.add('rv'); el.style.setProperty('--d',Math.min(i%6,5)*70+'ms'); els.push(el);
-    });
+  var vh=window.innerHeight, cand=[];
+  groups.forEach(function(sel){[].slice.call(document.querySelectorAll(sel)).forEach(function(el){if(cand.indexOf(el)<0)cand.push(el);});});
+  /* never animate an element and its children at the same time: keep the innermost */
+  cand=cand.filter(function(el){return !cand.some(function(o){return o!==el&&el.contains(o);});});
+  var els=[];
+  cand.forEach(function(el){
+    if(el.getBoundingClientRect().top<vh*0.95)return;
+    var sib=[].slice.call(el.parentNode.children).filter(function(x){return cand.indexOf(x)>-1;});
+    var i=sib.indexOf(el);
+    el.classList.add('rv'); el.style.setProperty('--d',Math.min(Math.max(i,0)%6,5)*70+'ms'); els.push(el);
   });
   var io=new IntersectionObserver(function(ents){ents.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:0.08});
   els.forEach(function(el){io.observe(el);});
