@@ -381,6 +381,28 @@ html{font-size:clamp(14px,0.55vw + 8.5px,18px)}
 @media (max-height:820px){.rail a{padding:6px 8px}.rail .subs{display:none}}
 .hero{max-width:min(1180px,92vw);justify-content:center}
 @media (min-width:901px){.wbar{flex-wrap:nowrap}.stats{flex-wrap:nowrap}.stats div{white-space:nowrap}.pill{flex:none}}
+/* motion */
+:root{--ease:cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:var(--d,0ms)}
+  .rv.in{opacity:1;transform:none}
+  .hero > *{animation:heroIn .7s var(--ease) both}
+  .hero .htext > *{animation:heroIn .7s var(--ease) both}
+  .hero .portrait{animation-delay:.05s}
+  .hero .htext > :nth-child(1){animation-delay:.1s}.hero .htext > :nth-child(2){animation-delay:.18s}.hero .htext > :nth-child(3){animation-delay:.26s}.hero .htext > :nth-child(4){animation-delay:.34s}
+  @keyframes heroIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .gi,.talk,.repo,.ctile,.tool,.bt,.hl,.adgal figure,.collage figure,.eside figure,.dashfig,.pubs a,.atile{transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s}
+  .gi:hover,a.talk:hover,a.repo:hover,.bt:hover,.hl:hover,.adgal figure:hover,.collage figure:hover,.eside figure:hover,.dashfig:hover,.pubs a:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.10)}
+  .gi img,.adgal img,.collage img,.eside img,.talk img{transition:transform .5s var(--ease)}
+  .gi:hover img,.adgal figure:hover img,.collage figure:hover img,.eside figure:hover img,a.talk:hover img{transform:scale(1.03)}
+  .gi,.adgal figure,.collage figure,.eside figure,.talk{overflow:hidden}
+  .pill span,.cta.dark,.cta.light{transition:transform .25s var(--ease),background .25s,color .25s}
+  .pill:hover span{transform:translateX(4px)}
+  .cta:hover{transform:translateY(-2px)}
+  nav.top{transition:box-shadow .3s,background .3s}
+  .rail a,.rail a i{transition:background .3s,color .3s,border-color .3s,box-shadow .3s}
+}
+.nav-wrap.scrolled nav.top{box-shadow:0 14px 40px rgba(0,0,0,.12)}
 /* mobile */
 @media (max-width:600px){
   body{font-size:15px}
@@ -529,6 +551,32 @@ html{font-size:clamp(14px,0.55vw + 8.5px,18px)}
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nav=document.querySelector('.nav-wrap');
+  window.addEventListener('scroll',function(){if(nav)nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
+  if(reduce||!('IntersectionObserver' in window))return;
+  var groups=['.hgrid > *','.stitle','.whead','.wbar','.gallery > *','.adgal > *','.collage > *','.repos > *','.pubs li','.stack .tool','.built > *','.agrid > *','.trows > *','.sidecol .talk','.arow > *','.seogeo > *','.hub','.listrip','.egrid > *','.pgrid > *','.map','.stagetop','.socials','.contact h2','.mail','.metrics .mrow > div'];
+  var vh=window.innerHeight, els=[];
+  groups.forEach(function(sel){
+    var list=[].slice.call(document.querySelectorAll(sel));
+    list.forEach(function(el,i){
+      if(el.closest('.rv'))return;
+      if(el.getBoundingClientRect().top<vh*0.95)return; /* already on screen: stay visible */
+      el.classList.add('rv'); el.style.setProperty('--d',Math.min(i%6,5)*70+'ms'); els.push(el);
+    });
+  });
+  var io=new IntersectionObserver(function(ents){ents.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+  els.forEach(function(el){io.observe(el);});
+  /* count-up for metrics */
+  var nums=[].slice.call(document.querySelectorAll('.metrics .mrow b'));
+  var cio=new IntersectionObserver(function(ents){ents.forEach(function(en){if(!en.isIntersecting)return;cio.unobserve(en.target);
+    var el=en.target,txt=el.textContent,m=txt.match(/^([^0-9]*)([0-9]+)(.*)$/);if(!m)return;
+    var end=+m[2],t0=null,dur=1100;
+    function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);el.textContent=m[1]+Math.round(end*e)+m[3];if(p<1)requestAnimationFrame(step);}
+    requestAnimationFrame(step);});},{threshold:0.6});
+  nums.forEach(function(n){cio.observe(n);});
+})();
 (function(){
   var links=[].slice.call(document.querySelectorAll('.rail a'));
   if(links.length){
