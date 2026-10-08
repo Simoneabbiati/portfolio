@@ -31,7 +31,6 @@ p{margin:0}
 .nav-wrap{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;justify-content:center;padding:16px 16px 0;pointer-events:none}
 nav.top{pointer-events:auto;display:flex;gap:4px;flex-wrap:wrap;justify-content:center;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-radius:999px;padding:8px 10px;box-shadow:0 10px 30px rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.04)}
 nav.top a{text-decoration:none;font-weight:500;font-size:.92rem;padding:8px 14px;border-radius:999px}
-nav.top a:hover{background:var(--bg)}
 nav.top a.me{font-weight:600}
 @media (max-width:600px){nav.top a{padding:6px 9px;font-size:.8rem}}
 
@@ -58,7 +57,6 @@ nav.top a.me{font-weight:600}
 .hl b{font-family:var(--display);font-weight:800;font-size:1.32rem;line-height:1.12}
 .hl span:not(.ic){font-size:.95rem;line-height:1.5}
 .hl em{font-style:normal;color:var(--muted);font-size:.9rem;margin-top:4px}
-.hl:hover em{color:var(--ink)}
 .hl.phd{grid-row:span 3;align-self:stretch;background:var(--white);border-radius:32px;padding:32px;gap:14px}
 .hl.phd b{font-size:clamp(2rem,3.4vw,2.9rem);line-height:1.04;letter-spacing:-.03em}
 .hl.phd span:not(.ic){font-size:1.05rem;line-height:1.6}
@@ -105,7 +103,6 @@ nav.top a.me{font-weight:600}
 .gallery .gi{text-decoration:none;color:inherit;background:rgba(255,255,255,.1)}
 .gallery .gi span{font-size:.72rem;padding:10px 12px;line-height:1.35;opacity:.95;display:flex;flex-direction:column;gap:3px}
 .gallery .gi b{font-size:.84rem;font-weight:600}
-a.gi:hover{background:rgba(255,255,255,.2)}
 @media (max-width:980px){.gallery{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:560px){.gallery{grid-template-columns:1fr 1fr}}
 .wbar{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;border-radius:999px;padding:18px 18px 18px 34px;background:rgba(255,255,255,.12)}
@@ -180,7 +177,6 @@ a.gi:hover{background:rgba(255,255,255,.2)}
 .capr #capn{font-weight:500;color:var(--muted)}
 .talks{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .talk{display:flex;gap:12px;align-items:center;text-decoration:none;background:var(--bg);border-radius:18px;padding:8px;font-size:.84rem;line-height:1.35}
-a.talk:hover{background:#ECECEC}
 .talk img{width:96px;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:12px;flex:none}
 .talk span{display:flex;flex-direction:column;gap:1px;min-width:0}
 .talk em{font-style:normal;color:var(--muted);font-size:.76rem}
@@ -216,7 +212,6 @@ a.talk:hover{background:#ECECEC}
 .repos{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 @media (max-width:600px){.repos{grid-template-columns:1fr}}
 .repo{display:flex;flex-direction:column;gap:4px;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:12px 14px;text-decoration:none;min-width:0}
-a.repo:hover{border-color:var(--ink)}
 .rn{font-weight:700;font-size:.92rem;overflow-wrap:anywhere}
 .rd{font-size:.8rem;line-height:1.45;color:var(--muted)}
 .rl{font-size:.76rem;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:auto}
@@ -227,7 +222,6 @@ a.repo:hover{border-color:var(--ink)}
 .research .rt{font-size:.88rem;line-height:1.55;opacity:.85}
 .pubs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
 .pubs a{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:rgba(255,255,255,.07);border-radius:14px;padding:10px 12px}
-.pubs a:hover{background:rgba(255,255,255,.14)}
 .pubs span{font-size:.72rem;opacity:.65}
 .pubs b{font-size:.84rem;font-weight:600;line-height:1.35}
 .rlink{font-size:.84rem;font-weight:600;margin-top:auto}
@@ -256,7 +250,6 @@ a.repo:hover{border-color:var(--ink)}
 .aud .an{font-weight:800;font-size:1.1rem;letter-spacing:-.01em}
 .aud .as{font-size:.8rem;opacity:.65;margin-bottom:4px}
 .t-ink .talk{background:rgba(255,255,255,.07);color:#fff}
-.t-ink a.talk:hover{background:rgba(255,255,255,.14)}
 .t-ink .talk em{color:#A9A9B2}
 .talk.noimg{padding:12px 14px}
 .aud.main .talk{flex-direction:column;align-items:stretch;gap:8px}
@@ -280,7 +273,6 @@ a.repo:hover{border-color:var(--ink)}
 @media (max-width:900px){.built{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.built{grid-template-columns:1fr}}
 .bt{background:var(--ink);color:#fff;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:4px;text-decoration:none}
-a.bt:hover{background:#26262B}
 .bt b{font-size:1rem}
 .bt em{font-style:normal;font-size:.76rem;color:#A9B8FF;font-weight:600}
 .bt span{font-size:.84rem;opacity:.85;line-height:1.45}
